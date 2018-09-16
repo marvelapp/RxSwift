@@ -16,6 +16,13 @@ class SignalTests: SharedSequenceTest { }
 
 extension SignalTests {
     func testSignalSharing_WhenErroring() {
+
+        func cmp<T>(_ lhs: T, _ rhs: T, _ comparison: (T, T) -> Bool) {
+            print(comparison(lhs, rhs))
+        }
+
+        cmp(NSNumber(value: 1), NSNumber(value: 1)) { $0 == $1 }
+
         let scheduler = TestScheduler(initialClock: 0)
 
         let observer1 = scheduler.createObserver(Int.self)
